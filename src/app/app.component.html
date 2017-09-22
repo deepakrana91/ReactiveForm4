@@ -1,20 +1,94 @@
-<!--The whole content below can be removed with the new code.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNTAgMjUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTAgMjUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojREQwMDMxO30NCgkuc3Qxe2ZpbGw6I0MzMDAyRjt9DQoJLnN0MntmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTI1LDMwIDEyNSwzMCAxMjUsMzAgMzEuOSw2My4yIDQ2LjEsMTg2LjMgMTI1LDIzMCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAJIi8+DQoJPHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSIxMjUsMzAgMTI1LDUyLjIgMTI1LDUyLjEgMTI1LDE1My40IDEyNSwxNTMuNCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAxMjUsMzAgCSIvPg0KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMjUsNTIuMUw2Ni44LDE4Mi42aDBoMjEuN2gwbDExLjctMjkuMmg0OS40bDExLjcsMjkuMmgwaDIxLjdoMEwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMQ0KCQlMMTI1LDUyLjF6IE0xNDIsMTM1LjRIMTA4bDE3LTQwLjlMMTQyLDEzNS40eiIvPg0KPC9nPg0KPC9zdmc+DQo=" />
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="http://angularjs.blogspot.ca/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" 
+          class="form-control"  
+          formControlName="fname"
+          name="fname"
+          >
+        </div>
+        <!-- <span class="help-block" *ngIf="!this.signupForm.get('fname').valid && this.signupForm.get('fname').touched">Please enter valid name</span> -->
+        <div *ngIf="signupForm.controls['fname'].hasError('required')&& signupForm.controls['fname'].touched" class="alert alert-danger">
+          Last Name is required.
+        </div>
+        <div *ngIf="signupForm.controls['fname'].hasError('pattern')&& signupForm.controls['fname'].touched" class="help-block">
+          Please enter alphabets.
+        </div>
+        <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" 
+            name="lname"
+            formControlName="lname"
+            class="form-control"             
+            >           
+        </div>
+        <span class="help-block" *ngIf="!this.signupForm.get('lname').valid && this.signupForm.get('lname').touched">Please enter Last name</span>
+        
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input type="number" 
+          name="age"
+          formControlName="age"
+          class="form-control"             
+          >           
+      </div>
+      
+        <div class="form-group">
+              <label for="pnumber">Phone Number</label>
+              <input type="text" 
+              name="pnumber"
+              formControlName="pnumber"
+              class="form-control"                
+              >
+        </div>
+        <!-- <span class="help-block" *ngIf="!this.signupForm.get('pnumber').valid && this.signupForm.get('pnumber').touched">Please enter valid PhoneNumber</span> -->
+        <div *ngIf="signupForm.controls['pnumber'].hasError('required')&& signupForm.controls['pnumber'].touched" class="help-block">
+          Phone Number is Required.
+        </div>
+        <div *ngIf="signupForm.controls['pnumber'].hasError('pattern')&& signupForm.controls['pnumber'].touched" class="help-block">
+          Please enter valid Phone Number.
+        </div>
+        <div class="form-group">
+            <select            
+            name="select"
+            class="form-control"
+            [ngModel]="selectedprefix"
+            formControlName="prefix">                
+                <option [ngValue]="item.value" *ngFor="let item of desigArray">{{item.value}}</option>
+            </select>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" [disabled]="!this.signupForm.valid">Submit</button>
+      </form>
+      <hr>
+      <h3>Form Values</h3>
+      <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>LastName</th>
+                <th>Age</th>
+                <th>Phone Number</th>
+                <th>Designation</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of nameArray">
+                <td>{{item.fname}}</td>
+                <td>{{item.lname}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.phone}}</td>
+                <td>{{item.designation}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
+    </div>
+  </div>
+</div>
